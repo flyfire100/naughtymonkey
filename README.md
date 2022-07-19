@@ -5,17 +5,26 @@
 
 # 架构
 
+
 没有naughtymonkey时候:
+
 服务A(1.1.1.1) -->服务B(2.2.2.2:8888) 接收请求
+
 服务A(1.1.1.1) <--服务B(2.2.2.2:8888) 返回响应
 
+
 使用naughtymonkey时候:
+
 服务A(1.1.1.1) -->服务B网卡(iptables) --> naughtymonkey(3.3.3.3:8080) --> 服务B(2.2.2.2:8888)
+
 服务A(1.1.1.1) <--服务B网卡(iptables) <-- naughtymonkey(3.3.3.3:8080) 此处可以篡改响应  <-- 服务B(2.2.2.2:8888)返回响应
 
 
+
 1 在服务B上面执行monkeyagent.sh 配置iptables规则,把服务A请求的码流都透传到naughtymonkey
+
 2 在naughtymonkey的界面配置拦截的URL地址,只有匹配到URL才会进行拦截操作
+
 3 在naughtymonkey的界面配置拦截和篡改任务,当匹配到条件的请求过来后就按照任务中的码流进行返回
 
 
